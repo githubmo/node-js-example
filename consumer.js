@@ -6,7 +6,7 @@ let topic = 'test2'
 
 var stream = Kafka.KafkaConsumer.createReadStream({
   'metadata.broker.list': brokers,
-  'group.id': 'motest2',
+  'group.id': 'motest22',
   'socket.keepalive.enable': true,
   'enable.auto.commit': false,
   'auto.offset.reset': 'earliest'
