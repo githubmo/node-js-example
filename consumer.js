@@ -22,9 +22,10 @@ stream.on('error', function(err) {
   process.exit(1);
 });
 
-stream.on('data', function(message) {
+stream.on('data', function(messageValue) {
     console.log('got me a message');
-    console.log(message.toString());
+    console.log(messageValue.toString());
+    // how do I get the key from here then? 
     stream.consumer.commit();
   })
 
