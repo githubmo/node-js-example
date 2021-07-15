@@ -6,7 +6,7 @@ let topic = 'test2'
 
 var stream = Kafka.KafkaConsumer.createReadStream({
   'metadata.broker.list': brokers,
-  'group.id': 'motest22',
+  'group.id': 'motest42',
   'socket.keepalive.enable': true,
   'enable.auto.commit': false,
   'auto.offset.reset': 'earliest'
@@ -24,7 +24,8 @@ stream.on('error', function(err) {
 
 stream.on('data', function(message) {
     console.log('got me a message');
-    console.log(message.value);
+    console.log(message.toString());
+    stream.consumer.commit();
   })
 
 stream.on('error', function(err) {
