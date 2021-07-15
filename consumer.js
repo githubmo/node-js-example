@@ -4,14 +4,15 @@ const Kafka = require('node-rdkafka');
 
 var stream = Kafka.KafkaConsumer.createReadStream({
   'metadata.broker.list': 'localhost:9092',
-  'group.id': 'librd-test2323',
+  'group.id': 'librd-test23233',
   'socket.keepalive.enable': true,
   'enable.auto.commit': false,
   'auto.offset.reset': 'earliest'
 }, {}, {
   topics: 'test1',
   waitInterval: 0,
-  objectMode: false
+  objectMode: false,
+  'auto.offset.reset': 'earliest'
 });
 
 stream.on('error', function(err) {
