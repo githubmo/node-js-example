@@ -1,18 +1,20 @@
 var Transform = require('stream').Transform;
 
 const Kafka = require('node-rdkafka');
+let brokers = 'localhost:9092'
+let topic = 'test2'
 
 var stream = Kafka.KafkaConsumer.createReadStream({
-  'metadata.broker.list': 'localhost:9092',
-  'group.id': 'librd-test23233',
+  'metadata.broker.list': brokers,
+  'group.id': 'motest2',
   'socket.keepalive.enable': true,
   'enable.auto.commit': false,
   'auto.offset.reset': 'earliest'
-}, {}, {
-  topics: 'test1',
+}, {'auto.offset.reset': 'earliest'}, {
+  topics: topic,
   waitInterval: 0,
   objectMode: false,
-  'auto.offset.reset': 'earliest'
+  
 });
 
 stream.on('error', function(err) {
@@ -22,7 +24,7 @@ stream.on('error', function(err) {
 
 stream.on('data', function(message) {
     console.log('got me a message');
-    console.log(message);
+    console.log(message.value);
   })
 
 stream.on('error', function(err) {
@@ -34,4 +36,4 @@ stream.consumer.on('event.error', function(err) {
   console.log(err);
 })
 
-console.log('reading from topic test1');
+console.log(`reading from topic ${topic}`);
